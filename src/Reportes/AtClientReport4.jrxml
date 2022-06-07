@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReclamosM" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="295495c4-422e-4566-9e2f-b0beddefbdf0">
+	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Reclamos_Mes" uuid="cd00946b-7e1b-44e5-9c5a-1bce2ac96415">
+		<parameter name="FECHA_INICIO" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FECHA_FINAL" class="java.util.Date"/>
+		<queryString>
+			<![CDATA[SELECT * FROM dboReclamo WHERE fecha BETWEEN $P{FECHA_INICIO} AND $P{FECHA_FINAL}]]>
+		</queryString>
+		<field name="idReclamo" class="java.lang.Integer"/>
+		<field name="idCliente" class="java.lang.Integer"/>
+		<field name="idTipoReclamo" class="java.lang.Integer"/>
+		<field name="descripcion" class="java.lang.String"/>
+		<field name="fecha" class="java.sql.Date"/>
+		<field name="idDeptoEmpresa" class="java.lang.Integer"/>
+		<field name="idEstadoReclamo" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="FECHA_INICIO" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FECHA_FINAL" class="java.util.Date"/>
+	<parameter name="USUARIO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(fecha) AS cuenta,DATENAME(MONTH,MAX(fecha)) AS mm,DATENAME(YEAR,MAX(fecha)) AS YY FROM dboReclamo
+	WHERE fecha BETWEEN $P{FECHA_INICIO} AND $P{FECHA_FINAL}
+	GROUP BY MONTH(fecha)
+	ORDER BY mm,YY]]>
+	</queryString>
+	<field name="cuenta" class="java.lang.Integer"/>
+	<field name="mm" class="java.lang.String"/>
+	<field name="YY" class="java.lang.String"/>
+	<variable name="cuenta_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cuenta}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="-1" width="340" height="124" backcolor="#0267FF" uuid="a236d4cb-5fef-4887-957f-d4f30302314c"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="13" y="22" width="309" height="80" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="ad82a82f-ef59-422b-a1d7-7bce4f2dd3d2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="24" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE RECLAMOS POR MES]]></text>
+			</staticText>
+			<image scaleImage="RealHeight" hAlign="Center" vAlign="Middle">
+				<reportElement x="344" y="0" width="226" height="124" uuid="e47a3be4-e201-4c5a-ad2e-740f107bb1a9"/>
+				<imageExpression><![CDATA["C:\\Users\\home\\Desktop\\JosuéArg\\ITR\\Josué\\2° Bachillerato\\ExpoTécnica 2021\\Proyecto\\AtClient\\src\\Reportes\\1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="0" width="113" height="35" uuid="0628a34c-7a44-4dab-96f1-e1b2c70068c3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Fecha del reporte:]]></text>
+			</staticText>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="132" y="0" width="166" height="35" uuid="79d3f2ed-3eab-4b36-bdd2-595d00726c9e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="409" y="0" width="60" height="35" uuid="4f77f258-b06e-458b-9b81-5d933002f246"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="469" y="1" width="90" height="34" uuid="4a0b9485-3ef8-4d2a-bfdc-4cc667befc5e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{USUARIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="13" y="16" width="546" height="22" forecolor="#FFFFFF" backcolor="#023859" uuid="89f0d2c5-462e-4f6c-9de2-8614c092b90e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de reclamos por mes:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="121" y="58" width="100" height="20" backcolor="#91BEF8" uuid="6f2b91f1-490b-43cc-a950-34698f26fc0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="58" width="100" height="20" backcolor="#91BEF8" uuid="b4dbd110-39f0-42b4-bca6-4081d0e84a04"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Año]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="358" y="58" width="100" height="20" backcolor="#91BEF8" uuid="858c4f0f-b81d-42ec-bdcd-3254f79ef778"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="121" y="0" width="100" height="20" uuid="237acb88-8aaa-4bd6-b83d-cd580fafc3e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{mm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="100" height="20" uuid="29900e1a-2403-417a-a37c-51c261a8102b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{YY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="0" width="100" height="20" uuid="88eedaed-f135-4452-a34a-1951cf8d0c34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuenta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="121" y="25" width="337" height="1" uuid="b28568bf-05e0-497f-bd5a-d9b90ae4eab8"/>
+				<graphicElement>
+					<pen lineStyle="Dashed" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="469" y="28" width="90" height="20" uuid="1695a44f-ea21-4680-9c40-10e0ee5aa465"/>
+				<textElement textAlignment="Right">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="20" y="27" width="534" height="1" uuid="2575bb12-7669-4f50-8452-1494bde3f58e"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Solid" lineColor="#4D5CCB"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="18" y="28" width="100" height="20" uuid="0e8badd5-e4a9-494a-b283-96da277fe882"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[AtClient - 2021]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="309" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="38" y="58" width="504" height="251" uuid="7bc10768-06a5-4522-a9f4-72d001690a3f"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend>
+						<font fontName="Century Gothic"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{mm}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{YY}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{cuenta}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<textField>
+				<reportElement x="244" y="10" width="96" height="20" uuid="f4f8579b-55a8-47c8-b612-83ad7c63514c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{cuenta_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="121" y="10" width="100" height="20" uuid="6363295a-a132-4b2a-a729-32279558f71f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Total reclamos:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AtClientReport1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4094907-7125-4b00-af8e-bb035493ee8e">
+	<property name="ireport.zoom" value="1.3995221406292002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="306"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT dd.departamento AS 'Departamento', COUNT(de.idEmpleado) AS 'N° Empleados' FROM dboDepartamento dd, dboEmpleado de
+WHERE dd.idDepartamento = de.idDepartamento
+GROUP BY dd.departamento]]>
+	</queryString>
+	<field name="Departamento" class="java.lang.String"/>
+	<field name="N° Empleados" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="149" splitType="Stretch">
+			<rectangle radius="1">
+				<reportElement x="0" y="0" width="340" height="124" backcolor="#0267FF" uuid="2e83ee8f-67d3-4d7f-a426-f431e00dbd0d"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="12" y="22" width="328" height="80" forecolor="#FFFFFF" uuid="6284a1b2-bd0b-42e9-aa45-8bf639f02540"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="20"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE EMPLEADOS POR DEPARTAMENTO DEL PAÍS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="142" y="138" width="273" height="1" uuid="13fc261f-8905-425c-aeef-af11a82d98f7"/>
+			</line>
+			<image scaleImage="RealHeight" hAlign="Center" vAlign="Middle">
+				<reportElement x="340" y="0" width="215" height="124" uuid="6197f8b2-0352-4a0f-9a7d-b88dd228ba29"/>
+				<imageExpression><![CDATA["img\\1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="10" width="100" height="20" uuid="cc485155-2908-4bee-b04e-e6b06c5668f3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha generado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="10" width="62" height="20" uuid="19792485-79b9-434e-a2a6-63d0057a5023"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="428" y="10" width="90" height="20" uuid="cb99b257-63e1-4f59-b241-96d6dfd5fd74"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="112" y="10" width="100" height="20" uuid="6e29afee-9e01-4c3b-b31e-14df70ca06d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="162" y="13" width="110" height="20" forecolor="#000000" backcolor="#91BEF8" uuid="661b2e49-2f70-480f-977c-44a784afd0a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Departamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="282" y="13" width="100" height="20" forecolor="#000000" backcolor="#91BEF8" uuid="9b406ba5-3b39-450a-af98-53de18bc6d97"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[N° Empleados]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement x="162" y="22" width="220" height="1" uuid="04da3440-b2a7-4847-8b65-50ab9039a3ab"/>
+			</line>
+			<textField>
+				<reportElement x="162" y="0" width="110" height="20" uuid="38ef63bf-34ac-40d4-9c49-a484f220166a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Departamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="3" width="100" height="20" uuid="2258f35b-6376-4873-889a-fd246136aad6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{N° Empleados}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="233" y="17" width="49" height="18" uuid="bee51893-ad52-43bf-814b-4b4b11558366"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="17" width="56" height="18" uuid="9e2eb3d7-f255-45bc-bb9b-5b3e9d269815"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Página:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="17" width="77" height="19" uuid="c890b763-5fd3-45e9-bf82-8c5117983f48"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total páginas:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="459" y="17" width="59" height="18" uuid="e18afad9-3674-46db-8b3a-788d992bde16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="195" y="35" width="77" height="1" forecolor="#0267FF" uuid="3c6f5bf0-180c-4739-8be1-542e1f89725c"/>
+			</line>
+			<line>
+				<reportElement x="415" y="36" width="92" height="1" forecolor="#0267FF" uuid="3c7da8a3-2cc9-4a8e-ac98-3afa3d0c8a56"/>
+			</line>
+			<line>
+				<reportElement x="14" y="16" width="534" height="1" uuid="52da46c5-862c-463e-923b-173240910991"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Solid" lineColor="#4D5CCB"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="12" y="17" width="100" height="20" uuid="933ff9ea-ca6d-4e94-9c96-c1d36911834a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[AtClient - 2021]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="204" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="42" y="0" width="476" height="204" uuid="44425358-f765-4cfd-8de9-c6fd4742aadb"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend>
+						<font fontName="Century Gothic"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Departamento}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Departamento}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{N° Empleados}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

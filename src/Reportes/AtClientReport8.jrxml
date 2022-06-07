@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte8" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="854e08aa-11bf-4e3b-944b-b35905abaa41">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Usuario" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT de.departamentoE , COUNT(e.idEmpleado) as 'Total Empleados' FROM dboDepartamentoEmpresa de, dboEmpleado e WHERE de.idDeptoEmpresa = e.idDeptoEmpresa GROUP BY departamentoE]]>
+	</queryString>
+	<field name="departamentoE" class="java.lang.String"/>
+	<field name="Total Empleados" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="340" height="124" forecolor="#495BCB" backcolor="#0267FF" uuid="ed70fdc7-ad56-4721-9810-faadb98188bd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="23" y="39" width="259" height="45" forecolor="#FFFFFF" uuid="bc0c6147-99ab-4ad2-aaab-f912e06727d3"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Century Gothic" size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE EMPLEADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="64" width="299" height="31" forecolor="#FFFFFF" uuid="9bf2e208-062d-4521-a652-e830df210dea"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Century Gothic" size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[POR DEPARTAMENTO]]></text>
+			</staticText>
+			<image scaleImage="RealHeight" hAlign="Center" vAlign="Middle">
+				<reportElement x="340" y="0" width="215" height="124" uuid="4fe45d61-7e6f-463c-ac95-81bab939b14e"/>
+				<imageExpression><![CDATA["C:\\Users\\home\\Desktop\\JosuéArg\\ITR\\Josué\\2° Bachillerato\\ExpoTécnica 2021\\Proyecto\\AtClient\\src\\Reportes\\1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="7" width="147" height="20" uuid="f38bfd7f-aaf6-4a8b-9d8f-804e40f8ddc6"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Elaboracion:]]></text>
+			</staticText>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="164" y="7" width="132" height="20" uuid="da892052-eba4-4ca5-b686-2428f3158467"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="7" width="94" height="20" uuid="671b0ad1-f016-4215-ad18-8c1dc96d3ed1"/>
+				<textElement textAlignment="Right">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="385" y="7" width="100" height="20" uuid="1a5385fc-9509-4137-8a76-8566e8450707"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<rectangle>
+				<reportElement x="17" y="0" width="246" height="34" forecolor="#90BEF9" backcolor="#90BEF9" uuid="85093961-541d-4f03-b741-c64113b9e675"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="274" y="0" width="260" height="34" forecolor="#90BEF9" backcolor="#90BEF9" uuid="b9b44a3a-eef4-4e3c-96ec-f7161515744d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="35" y="7" width="181" height="20" uuid="03fda1bc-6e60-4d78-b020-fc24f592e95d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<text><![CDATA[Departamento Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="7" width="187" height="20" uuid="3edda819-f29d-444c-a311-9c4e2ea55eca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="7" width="177" height="14" uuid="085499ea-b82d-4672-82e0-6c69cc753347"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{departamentoE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="17" y="36" width="509" height="1" uuid="f48ff5b1-2161-4709-b6cb-189fa3e9c6a6"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Dashed" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="309" y="7" width="187" height="14" uuid="cd57624e-3f4e-489f-abd0-18fa22f99a52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total Empleados}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="13" width="79" height="20" uuid="cc3d8f80-749f-4f3b-81cf-3274a3338b18"/>
+				<textElement textAlignment="Right">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="18" width="100" height="20" uuid="6de825d6-0cf5-49ba-a115-8b1c5cfe8432"/>
+				<textElement>
+					<font fontName="Century Gothic" size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[AtClient - 2021]]></text>
+			</staticText>
+			<line>
+				<reportElement x="17" y="12" width="517" height="1" uuid="1a2e5791-ae5a-458f-b29e-5ad49741c30c"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineColor="#0033CC"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="299" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="17" y="23" width="517" height="276" uuid="0ab28821-8f5d-4a7e-921e-5c6aa3c25ef3"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom">
+						<font fontName="Century Gothic"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{departamentoE}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{departamentoE}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Total Empleados}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

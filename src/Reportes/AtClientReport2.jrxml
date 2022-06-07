@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AtClientReport1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4094907-7125-4b00-af8e-bb035493ee8e">
+	<property name="ireport.zoom" value="1.3995221406292002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="174"/>
+	<parameter name="departamento" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="fechaInicio" class="java.util.Date"/>
+	<parameter name="fechaFin" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[SELECT de.estadoReclamo AS 'Estado reclamo', COUNT(dr.idReclamo) AS 'N° Reclamos' FROM dboEstadoReclamo de, dboReclamo dr
+WHERE de.idEstadoReclamo = dr.idEstadoReclamo
+AND dr.idDeptoEmpresa = (SELECT idDeptoEmpresa FROM dboDepartamentoEmpresa WHERE departamentoE = $P{departamento})
+AND dr.fecha BETWEEN $P{fechaInicio} AND $P{fechaFin}
+GROUP BY estadoReclamo]]>
+	</queryString>
+	<field name="Estado reclamo" class="java.lang.String"/>
+	<field name="N° Reclamos" class="java.lang.Integer"/>
+	<variable name="N° Reclamos_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{N° Reclamos}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152" splitType="Stretch">
+			<rectangle radius="1">
+				<reportElement x="0" y="0" width="340" height="124" backcolor="#0267FF" uuid="2e83ee8f-67d3-4d7f-a426-f431e00dbd0d"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="21" y="29" width="289" height="61" forecolor="#FFFFFF" uuid="6284a1b2-bd0b-42e9-aa45-8bf639f02540"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="20"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE RECLAMOS DE UN DEPARTAMENTO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="142" y="137" width="273" height="1" uuid="13fc261f-8905-425c-aeef-af11a82d98f7"/>
+			</line>
+			<image scaleImage="RealHeight" hAlign="Center" vAlign="Middle">
+				<reportElement x="340" y="0" width="215" height="124" uuid="692c0102-4aae-41cf-938c-8893024f6baa"/>
+				<imageExpression><![CDATA["C:\\Users\\home\\Desktop\\JosuéArg\\ITR\\Josué\\2° Bachillerato\\ExpoTécnica 2021\\Proyecto\\AtClient\\src\\Reportes\\1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="72" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="10" y="31" width="534" height="20" backcolor="#023859" uuid="2400b36c-cf5a-4101-aa14-147ca50d1370"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="392" y="0" width="62" height="20" uuid="19792485-79b9-434e-a2a6-63d0057a5023"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="31" width="85" height="20" forecolor="#FFFFFF" uuid="fb0455d5-cf59-4039-a45a-cda8cb747a59"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Departamento:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="110" y="0" width="72" height="20" uuid="6e29afee-9e01-4c3b-b31e-14df70ca06d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="100" height="20" uuid="cb99b257-63e1-4f59-b241-96d6dfd5fd74"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="31" width="100" height="20" forecolor="#FFFFFF" uuid="0c24d2c3-c334-4b75-ae10-ec86c548e925"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{departamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="0" width="100" height="20" uuid="cc485155-2908-4bee-b04e-e6b06c5668f3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha generado:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="155" y="10" width="120" height="20" forecolor="#000000" backcolor="#91BEF8" uuid="88e28282-1739-4993-9d0b-d2422b7e3c98"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[Estado reclamo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="282" y="10" width="110" height="20" forecolor="#000000" backcolor="#91BEF8" uuid="48831d0b-7a34-4fbc-8363-9b7baf7d1887"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<text><![CDATA[N° Reclamos]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="155" y="0" width="120" height="20" uuid="15e8b340-4b4a-46a6-9455-4c2b7914745a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estado reclamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="0" width="110" height="20" uuid="4d621511-129c-4187-b162-7cbe51ab86ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{N° Reclamos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="155" y="22" width="239" height="1" uuid="04da3440-b2a7-4847-8b65-50ab9039a3ab"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="72">
+			<staticText>
+				<reportElement x="42" y="0" width="100" height="20" uuid="72d1d541-2d66-46dd-b046-5ea414b31d9c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha inicio: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="0" width="42" height="20" uuid="e4357da6-8e67-4276-9a55-c1a2cdcabe91"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="42" y="30" width="100" height="20" uuid="6df7a0f2-06a3-46cd-9bdf-3aaff340eb3f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="30" width="42" height="20" uuid="1deb9a29-0698-4801-ad08-1cf1cead7377"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaFin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="418" y="18" width="100" height="20" uuid="bee51893-ad52-43bf-814b-4b4b11558366"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="372" y="18" width="56" height="20" uuid="9e2eb3d7-f255-45bc-bb9b-5b3e9d269815"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Página:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="18" width="100" height="20" uuid="afc110de-4b0a-43ab-b42c-f3c89825601c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[AtClient - 2021]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="17" width="534" height="1" uuid="9ce7aead-2b02-4d6c-8f09-9c42cfd6211a"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Solid" lineColor="#4D5CCB"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="251" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="42" y="43" width="476" height="208" uuid="44425358-f765-4cfd-8de9-c6fd4742aadb"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend>
+						<font fontName="Century Gothic"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Estado reclamo}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Estado reclamo}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{N° Reclamos}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+			<staticText>
+				<reportElement x="155" y="0" width="100" height="20" uuid="64b6aff5-16be-4be9-a7e9-3b1fc3affe4a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reclamos totales:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="0" width="110" height="20" uuid="19749e6f-e0ab-46bf-acef-cdf88819e6e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{N° Reclamos_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
